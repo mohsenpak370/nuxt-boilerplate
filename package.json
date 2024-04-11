@@ -3,17 +3,33 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "postinstall": "nuxt prepare",
+    "prepare": "husky install",
     "dev": "nuxt dev",
+    "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check .",
+    "fixformat": "prettier --write ."
   },
   "dependencies": {
     "@nuxtjs/i18n": "^8.3.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "lint-staged": "^15.2.2",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@nuxt/eslint-config": "^0.3.6",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^8.0.0",
+    "prettier": "^3.2.5"
   }
 }
