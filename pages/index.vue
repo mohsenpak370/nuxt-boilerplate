@@ -1,5 +1,14 @@
-<script setup>
+<script setup lang="ts">
 const { locale, setLocale } = useI18n();
+
+const loading = ref(false);
+const onClick = () => {
+  console.log('clicked');
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+  }, 3000);
+};
 </script>
 
 <template>
@@ -21,5 +30,10 @@ const { locale, setLocale } = useI18n();
       </button>
     </div>
     <p class="text-xl text-center py-44">{{ $t('welcome') }}</p>
+    <div class="flex items-center justify-center">
+      <ButtonPrimary class="w-24" filled :loading="loading" @click="onClick">
+        Test
+      </ButtonPrimary>
+    </div>
   </div>
 </template>
