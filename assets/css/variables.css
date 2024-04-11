@@ -1,0 +1,12 @@
+:root {
+  --primary-color: #007bff;
+  --primary-color_accent: #0048ff;
+  --secondary-color: #59d237;
+  --secondary-color_accent: #3ad237;
+  --background-light: #f8f9fa;
+  --background-light_accent: #efefef;
+  --background-dark: #f8f9fa;
+  --background-dark_accent: #efefef;
+  --border-radius-1: 0.5rem;
+  --border-radius-2: 1rem;
+}
