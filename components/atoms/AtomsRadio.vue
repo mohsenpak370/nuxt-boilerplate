@@ -25,12 +25,12 @@ const vModelValue = computed<string>({
 </script>
 
 <template>
-  <label class="inline-flex items-center gap-2" :class="disabled ? 'cursor-not-allowed' : 'cursor-pointer'">
+  <label class="inline-flex items-center gap-2 select-none" :class="disabled ? 'cursor-not-allowed' : 'cursor-pointer'">
     <input
       v-model="vModelValue"
       type="radio"
       :value="value"
-      class="appearance-none border border-gray-300 disabled:border-gray-200 disabled:bg-gray-100 rounded-full checked:border-primary"
+      class="flex-shrink-0 appearance-none border border-gray-300 hover:border-primary disabled:border-gray-200 rounded-full checked:border-primary-accent"
       :class="{
         'size-4 before:size-2.5': size === 'sm',
         'size-6 before:size-4': size === 'md',
@@ -41,7 +41,7 @@ const vModelValue = computed<string>({
       :disabled="disabled"
     />
     <span :class="labelClasses">{{ label }}</span>
-    <slot></slot>
+    <slot />
   </label>
 </template>
 
@@ -56,7 +56,11 @@ input[type='radio']::before {
   border-radius: 50%;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1.5rem 1.5rem var(--primary-color_accent);
+  box-shadow: inset 1.5rem 1.5rem var(--primary-color);
+}
+
+input[type='radio']:disabled::before {
+  box-shadow: inset 1.5rem 1.5rem #e5e7eb;
 }
 
 input[type='radio']:checked::before {
