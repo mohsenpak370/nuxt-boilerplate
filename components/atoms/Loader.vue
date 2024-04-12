@@ -146,10 +146,8 @@ const props = withDefaults(
 .loader--4:before,
 .loader--4:after {
   background:
-    radial-gradient(closest-side at 50% 12.5%, v-bind(color) 96%, #0000) 50% 0/20%
-      80% repeat-y,
-    radial-gradient(closest-side at 12.5% 50%, v-bind(color) 96%, #0000) 0 50%/80%
-      20% repeat-x;
+    radial-gradient(closest-side at 50% 12.5%, v-bind(color) 96%, #0000) 50% 0/20% 80% repeat-y,
+    radial-gradient(closest-side at 12.5% 50%, v-bind(color) 96%, #0000) 0 50%/80% 20% repeat-x;
 }
 .loader--4:before,
 .loader--4:after {
