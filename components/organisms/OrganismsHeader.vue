@@ -8,17 +8,14 @@ const availableLocales = computed(() => {
   return locales.value.filter((i) => i.code !== locale.value);
 });
 
+const colorMode = useColorMode();
 const toggleDarkMode = () => {
-  if (!document.documentElement.classList.contains('dark-mode')) {
-    document.documentElement.classList.add('dark-mode');
-  } else {
-    document.documentElement.classList.remove('dark-mode');
-  }
+  colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light';
 };
 </script>
 
 <template>
-  <div class="px-8 flex items-center justify-between bg-light-default dark:bg-dark-default">
+  <div class="px-8 flex items-center justify-between bg-light-default dark:bg-dark-default sticky top-0">
     <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-50">Nuxt boilerplate</h1>
     <div class="flex items-center gap-4">
       <div class="">
@@ -41,7 +38,7 @@ const toggleDarkMode = () => {
       </div>
       <div class="checkbox-wrapper-54">
         <label class="switch">
-          <input type="checkbox" @change="toggleDarkMode" />
+          <input type="checkbox" :value="true" @change="toggleDarkMode" />
           <span class="slider"></span>
         </label>
       </div>
