@@ -24,7 +24,7 @@ const onClick = (event: Event) => {
 
 <template>
   <button
-    class="px-4 py-2 rounded-1 border"
+    class="px-4 h-12 flex items-center justify-center gap-2 rounded-1 border"
     :disabled="disabled"
     dir="auto"
     @click="onClick"

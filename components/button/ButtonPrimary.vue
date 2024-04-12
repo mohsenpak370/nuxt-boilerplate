@@ -28,11 +28,7 @@ const onClick = () => {
     @click="onClick"
   >
     <template v-slot:loading>
-      <AtomsLoader
-        :color="filled ? 'white' : 'var(--primary-color)'"
-        size="sm"
-        :type="2"
-      />
+      <AtomsLoader :color="filled ? 'white' : 'var(--primary-color)'" size="sm" :type="2" />
     </template>
     <slot> Button </slot>
   </AtomsButton>
