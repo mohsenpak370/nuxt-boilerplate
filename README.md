@@ -1,6 +1,14 @@
-# Nuxt 3 Minimal Starter
+# Nuxt 3 Boilerplate
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a Nuxt boilerplate with Tailwind CSS, i18n, husky and lint-staged.
+
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more about Nuxt.
+
+Other related links:
+
+https://nuxt.com/modules/tailwindcss
+
+https://nuxt.com/modules/i18n
 
 ## Setup
 
