@@ -40,8 +40,8 @@ const toggleDarkMode = () => {
       <button class="relative w-8 h-8" @click="toggleDarkMode">
         <ColorScheme placeholder="" tag="div">
           <transition-group name="toggle-theme">
-            <SvgoMoon key="moon" v-if="colorMode.value === 'light'" class="absolute inset-0 text-3xl text-gray-600" />
-            <SvgoSun key="sun" v-if="colorMode.value === 'dark'" class="absolute inset-0 text-3xl text-gray-200" />
+            <IconMoon key="moon" v-if="colorMode.value === 'light'" class="absolute inset-0 text-3xl text-gray-600" />
+            <IconSun key="sun" v-if="colorMode.value === 'dark'" class="absolute inset-0 text-3xl text-gray-200" />
           </transition-group>
         </ColorScheme>
       </button>

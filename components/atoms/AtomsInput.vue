@@ -4,7 +4,15 @@ defineProps({
     type: String,
     default: '',
   },
+  inputClass: {
+    type: String,
+    default: '',
+  },
   label: {
+    type: String,
+    default: '',
+  },
+  labelClass: {
     type: String,
     default: '',
   },
@@ -12,19 +20,15 @@ defineProps({
     type: String,
     default: 'text',
   },
-  message: {
-    type: String,
-    default: '',
-  },
   placeholder: {
     type: String,
     default: 'type here...',
   },
-  required: {
+  disabled: {
     type: Boolean,
     default: false,
   },
-  disabled: {
+  required: {
     type: Boolean,
     default: false,
   },
@@ -36,61 +40,49 @@ defineProps({
     type: Number,
     default: 200,
   },
-  state: {
-    type: String,
-    default: 'normal',
-    validator: (value) => ['normal', 'error', 'warning', 'success'].includes(value),
+  isClearable: {
+    type: Boolean,
+    default: false,
   },
 });
 
 defineEmits(['update:modelValue']);
+
+const showPassword = ref(false);
 </script>
 
 <template>
-  <div>
-    <label>
-      <span v-if="label" class="font-d-label" :class="disabled ? 'text-d-grey-7' : 'text-d-grey-4'">
-        {{ label }}
-        <sup v-if="required" class="text-d-grey-6">*</sup>
-      </span>
-      <div
-        class="mt-2 sm:mt-3 flex items-center w-full h-12 sm:h-16 px-3 sm:px-5 py-3.5 sm:py-4 gap-1 sm:gap-2 rounded-lg border border-current"
-        :class="{
-          'text-d-border-default hover:text-d-border-hover focus-within:!text-d-border-selected':
-            state === 'normal' && !disabled,
-          'text-d-alert-warning': state === 'warning' && !disabled,
-          'text-d-alert-error': state === 'error' && !disabled,
-          'text-d-alert-success': state === 'success' && !disabled,
-          'text-d-border-disable': disabled,
-        }"
-      >
-        <slot name="prepend" />
-        <input
-          :value="modelValue"
-          :type="type"
+  <label>
+    <slot v-if="!label" name="label" />
+    <span v-if="label" :class="['block', { labelClass: true }]">{{ label }}</span>
+    <label class="px-2 h-12 flex items-center justify-between gap-2 rounded-1 border" :class="inputClass">
+      <slot name="prepend" />
+      <input
+        :value="modelValue"
+        :type="type === 'password' ? (showPassword ? 'text' : 'password') : type"
+        :disabled="disabled"
+        :required="true"
+        :placeholder="placeholder"
+        :minlength="minLength"
+        :maxlength="maxLength"
+        class="w-full h-full bg-transparent outline-none"
+        @input="$emit('update:modelValue', $event?.target?.value)"
+      />
+      <span class="flex-shrink-0 flex items-center gap-1">
+        <button
+          v-if="!disabled && isClearable && modelValue"
           :disabled="disabled"
-          :required="required"
-          :placeholder="placeholder"
-          :minlength="minLength"
-          :maxlength="maxLength"
-          class="d-input-base"
-          @input="$emit('update:modelValue', $event.target.value)"
-        />
+          @click="$emit('update:modelValue', '')"
+        >
+          <IconX class="text-2xl text-gray-500" />
+        </button>
+        <button v-if="type === 'password' && !disabled" @click="showPassword = !showPassword">
+          <IconEye filled v-if="!showPassword" class="text-2xl text-gray-500" />
+          <IconEyeSlash filled v-if="showPassword" class="text-2xl text-gray-500" />
+        </button>
         <slot name="append" />
-      </div>
+      </span>
     </label>
-    <p
-      v-if="message"
-      class="mt-1 font-d-body-3"
-      :class="{
-        '!text-d-white-7': disabled,
-        'text-d-grey-6': state === 'normal',
-        'text-d-alert-warning': state === 'warning',
-        'text-d-alert-error': state === 'error',
-        'text-d-alert-success': state === 'success',
-      }"
-    >
-      {{ message }}
-    </p>
-  </div>
+    <slot name="support" />
+  </label>
 </template>
