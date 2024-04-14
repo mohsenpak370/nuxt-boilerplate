@@ -21,4 +21,8 @@ export default defineNuxtConfig({
   eslint: {
     lintOnStart: false,
   },
+  svgo: {
+    componentPrefix: 'icon',
+    fontControl: false,
+  },
 });
