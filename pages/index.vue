@@ -98,5 +98,11 @@ const onClick = () => {
         </template>
       </AtomsInput>
     </div>
+    <div class="my-4 flex items-center justify-center gap-6">
+      <AtomsToggle v-model="loading" />
+      <AtomsToggle v-model="loading" dynamic-radius />
+      <AtomsToggle v-model="loading" dynamic-radius outside />
+      <AtomsToggle v-model="loading" outside />
+    </div>
   </div>
 </template>
